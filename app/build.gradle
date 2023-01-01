@@ -6,6 +6,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def apiPropertiesFile = rootProject.file("local.properties")
+def apiProperties = new Properties()
+apiProperties.load(new FileInputStream(apiPropertiesFile))
+
 android {
     namespace 'com.wahidabd.composemovie'
     compileSdk 33
@@ -16,6 +20,10 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField ("String", "BASE_URL", apiProperties['BASE_URL'])
+        buildConfigField ("String", "TOKEN", apiProperties['TOKEN'])
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -40,7 +48,7 @@ android {
         compose true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion '1.1.1'
+        kotlinCompilerExtensionVersion compose_ui_version
         kotlinCompilerVersion '1.7.20'
     }
     packagingOptions {
