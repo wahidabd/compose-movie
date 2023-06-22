@@ -93,6 +93,16 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     api("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
 
-    // rx permission
-    implementation("com.github.tbruyelle:rxpermissions:0.12")
+    // coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    // accompanist
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+    implementation("com.google.accompanist:accompanist-navigation-animation:0.31.2-alpha")
+
+    // dataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // icons
+    implementation("androidx.compose.material:material-icons-extended:1.4.3")
 }
