@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 android {
@@ -20,26 +21,38 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        buildConfigField("String", "NEATFLIX_API_KEY", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "NEATFLIX_API_KEY", "\"24149183601d3608dcc2154306619711\"")
+    }
+
+    applicationVariants.all {
+        addJavaSourceFoldersToModel(
+            File(buildDir, "generated/ksp/$name/kotlin")
+        )
     }
 
     buildTypes {
-        getByName("release"){
+        getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
     packaging {
         resources {
@@ -68,7 +81,18 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    // one library
     implementation("com.github.wahidabd:one-library:1.1.8")
+
+    // accompanist
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.30.1")
+
+    // constraint
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
+    // raam costa navigation
+    implementation("io.github.raamcosta.compose-destinations:core:1.9.42-beta")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.9.42-beta")
 
     // livedata compose
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.1")
@@ -78,6 +102,18 @@ dependencies {
     implementation("io.insert-koin:koin-android:3.3.3")
     implementation("io.insert-koin:koin-androidx-workmanager:3.3.3")
     implementation("io.insert-koin:koin-androidx-navigation:3.3.3")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.41")
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+
+    // Hilt - for @HiltViewModel
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+    // Lottie
+    implementation("com.airbnb.android:lottie-compose:5.0.3")
 
     // logging
     implementation("com.jakewharton.timber:timber:5.0.1")

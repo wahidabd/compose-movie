@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
-import com.wahidabd.movieapps.ui.screen.movie.MovieScreen
 
 
 /**
@@ -28,7 +27,7 @@ fun NavGraph(
         startDestination = Destinations.Movie.route
     ) {
         composable(Destinations.Movie.route) { MoviesScreenGraph() }
-        composable(Destinations.Favorite.route){ FavoriteScreenGraph()}
+        composable(Destinations.Favorite.route) { FavoriteScreenGraph() }
         profileScreen()
     }
 }
@@ -87,7 +86,6 @@ fun MoviesScreenGraph(navController: NavHostController = rememberAnimatedNavCont
                 }
             }
         ) {
-            MovieScreen(setSearchMovie = {}, navigate = {})
         }
     }
 }
