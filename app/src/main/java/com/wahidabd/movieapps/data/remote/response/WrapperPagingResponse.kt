@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName
  */
 
 
-data class PagingResponse<T>(
+data class WrapperPagingResponse<T>(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")
