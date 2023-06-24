@@ -22,8 +22,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "NEATFLIX_API_KEY", "\"https://api.themoviedb.org/3/\"")
-        buildConfigField("String", "NEATFLIX_API_KEY", "\"24149183601d3608dcc2154306619711\"")
+        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+        buildConfigField("String", "API_KEY", "\"24149183601d3608dcc2154306619711\"")
     }
 
     applicationVariants.all {
@@ -103,14 +103,6 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-workmanager:3.3.3")
     implementation("io.insert-koin:koin-androidx-navigation:3.3.3")
 
-    // Hilt
-    implementation("com.google.dagger:hilt-android:2.46.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.41")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
-
-    // Hilt - for @HiltViewModel
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     // Lottie
     implementation("com.airbnb.android:lottie-compose:5.0.3")
@@ -141,4 +133,7 @@ dependencies {
 
     // icons
     implementation("androidx.compose.material:material-icons-extended:1.4.3")
+
+    // Pagination
+    implementation("androidx.paging:paging-compose:3.2.0-rc01")
 }

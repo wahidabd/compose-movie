@@ -1,4 +1,4 @@
-package com.wahidabd.movieapps
+package com.wahidabd.movieapps.ui.screen
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
