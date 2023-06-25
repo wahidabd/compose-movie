@@ -5,7 +5,6 @@ import com.wahidabd.library.utils.coroutine.boundResource.InternetBoundResource
 import com.wahidabd.movieapps.data.remote.response.WrapperGenreResponse
 import com.wahidabd.movieapps.domain.mapper.toDomain
 import com.wahidabd.movieapps.domain.model.Genre
-import com.wahidabd.movieapps.domain.repository.GenreRepository
 import com.wahidabd.movieapps.utils.MovieType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

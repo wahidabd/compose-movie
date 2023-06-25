@@ -4,13 +4,11 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.wahidabd.library.data.Resource
 import com.wahidabd.library.utils.coroutine.boundResource.InternetBoundResource
-import com.wahidabd.movieapps.data.remote.response.WatchProvider
 import com.wahidabd.movieapps.data.remote.response.WatchProviderResponse
 import com.wahidabd.movieapps.data.remote.response.WrapperCastResponse
 import com.wahidabd.movieapps.domain.mapper.toDomain
 import com.wahidabd.movieapps.domain.model.Cast
 import com.wahidabd.movieapps.domain.model.Movie
-import com.wahidabd.movieapps.domain.repository.MovieRepository
 import com.wahidabd.movieapps.utils.MovieType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -82,7 +80,7 @@ class MovieRepositoryImpl(
             }
         }
 
-    override suspend fun getMovieCast(id: Int, movieType: MovieType): Flow<Resource<List<Cast>>> =
+    override fun getMovieCast(id: Int, movieType: MovieType): Flow<Resource<List<Cast>>> =
         object : InternetBoundResource<List<Cast>, WrapperCastResponse>() {
             override suspend fun createCall(): Flow<Resource<WrapperCastResponse>> {
                 return source.getMovieCast(id, movieType)
@@ -96,10 +94,19 @@ class MovieRepositoryImpl(
 
         }.asFlow()
 
-    override suspend fun getWatchProvider(
+    override fun getWatchProvider(
         id: Int,
         movieType: MovieType
     ): Flow<Resource<WatchProviderResponse>> {
-        return source.getWatchProvider(id, movieType)
+        return object : InternetBoundResource<WatchProviderResponse, WatchProviderResponse>() {
+            override suspend fun createCall(): Flow<Resource<WatchProviderResponse>> {
+                return source.getWatchProvider(id, movieType)
+            }
+
+            override suspend fun saveCallRequest(data: WatchProviderResponse): WatchProviderResponse {
+                return data
+            }
+
+        }.asFlow()
     }
 }

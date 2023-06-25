@@ -1,4 +1,4 @@
-package com.wahidabd.movieapps.domain.repository
+package com.wahidabd.movieapps.data.remote.source.movie
 
 import androidx.paging.PagingData
 import com.wahidabd.library.data.Resource
@@ -26,6 +26,6 @@ interface MovieRepository {
     fun getBackInTheDayMovie(movieType: MovieType): Flow<PagingData<Movie>>
     fun getSimilarMovie(movieType: MovieType, id: Int): Flow<PagingData<Movie>>
     fun getRecommendedMovie(movieType: MovieType, id: Int): Flow<PagingData<Movie>>
-    suspend fun getMovieCast(id: Int, movieType: MovieType): Flow<Resource<List<Cast>>>
-    suspend fun getWatchProvider(id: Int, movieType: MovieType): Flow<Resource<WatchProviderResponse>>
+    fun getMovieCast(id: Int, movieType: MovieType): Flow<Resource<List<Cast>>>
+    fun getWatchProvider(id: Int, movieType: MovieType): Flow<Resource<WatchProviderResponse>>
 }

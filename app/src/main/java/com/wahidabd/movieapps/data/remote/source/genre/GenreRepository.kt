@@ -1,4 +1,4 @@
-package com.wahidabd.movieapps.domain.repository
+package com.wahidabd.movieapps.data.remote.source.genre
 
 import com.wahidabd.library.data.Resource
 import com.wahidabd.movieapps.data.remote.response.WrapperGenreResponse
